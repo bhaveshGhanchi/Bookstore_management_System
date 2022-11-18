@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//Creating Book Schema 
 const bookSchema = new Schema({
     image:{
         type: String,

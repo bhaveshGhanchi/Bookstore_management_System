@@ -1,7 +1,6 @@
-
-const book = require("../model/book.js");
 const Book = require("../model/book.js")
 
+// Api to get details of book in the database
 const getAllBooks =async (req,res,next)=>{
     let books 
     try {
@@ -16,6 +15,7 @@ const getAllBooks =async (req,res,next)=>{
     return res.status(200).json({books})
 }
 
+// Api to search book by name, author and category
 const getbook =async (req,res,next)=>{
     const id = req.params.id;
     let books 
@@ -38,6 +38,7 @@ const getbook =async (req,res,next)=>{
     return res.status(200).json({books})
 }
 
+// API to add Book to the database
 const addBook =async(req,res,next)=>{
     const {image,name,author,description,price,category,quantity} = req.body;
     let book;
@@ -65,6 +66,7 @@ const addBook =async(req,res,next)=>{
     return res.status(200).json({book})
 }
 
+// API to update Book in the database
 const updateBook = async (req,res,next)=>{
     const {name,author,description,price,category,quantity} = req.body;
     let books 
@@ -96,7 +98,7 @@ const updateBook = async (req,res,next)=>{
 }
 
 
-
+// API to remove Book from the database
 const removeBook = async (req,res,next)=>{
     let books 
     const id = req.params.id;
