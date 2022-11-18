@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 8989
 const con = require('./connect.js')
+const bookRouter = require('./routes/book_routes')
 
-app.get('/', function(req, res) {
-    res.send('Third party application')
-})
+app.use(express.json())
+app.use('/book',bookRouter);
+
  app.listen(port, () => {
-    console.log(`Sample app listening at http://localhost:${8989}`)
+    console.log(`app listening at http://localhost:${8989}`)
  })

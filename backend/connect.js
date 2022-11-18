@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
-uri = `mongodb+srv://Mernmp:${process.env.PASS}@cluster0.mbaqegg.mongodb.net/?retryWrites=true&w=majority`
+uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.mbaqegg.mongodb.net/?retryWrites=true&w=majority`
 const options = {
     autoIndex: false, 
     maxPoolSize: 10, 
@@ -11,7 +11,7 @@ const options = {
 
 const con =  mongoose.connect(uri, options).then(
     () => { 
-        console.log("Connection successful");
+      console.log("Connection successful");
     },
     err => {console.log(err)}
   );

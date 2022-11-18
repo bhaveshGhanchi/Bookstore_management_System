@@ -1,0 +1,118 @@
+
+const book = require("../model/book.js");
+const Book = require("../model/book.js")
+
+const getAllBooks =async (req,res,next)=>{
+    let books 
+    try {
+        books = await Book.find();
+
+    } catch (error) {
+        console.log(error);
+    }
+    if(!books){
+        return res.status(404).json({message:"No books found"})
+    }
+    return res.status(200).json({books})
+}
+
+const getbook =async (req,res,next)=>{
+    const id = req.params.id;
+    let books 
+    try {
+        books = await Book.find({
+            "$or":[
+                {name:{$regex:id,$options:"i"}},
+                {author:{$regex:id,$options:"i"}},
+                {category:{$regex:id,$options:"i"}}
+
+            ]
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+    if(!books){
+        return res.status(404).json({message:"No book found"})
+    }
+    return res.status(200).json({books})
+}
+
+const addBook =async(req,res,next)=>{
+    const {image,name,author,description,price,category,quantity} = req.body;
+    let book;
+    let available= false;
+    if(quantity>0){
+        available = true
+    }
+    try{
+        book = new Book({
+            image,
+            name,
+            author,
+            description,
+            price,
+            category,
+            quantity,
+            available
+        });
+        await book.save();
+    }catch(err){ console.log(err)}
+
+    if(!book){
+        return res.status(500).json({message:"Unable to add"})
+    }
+    return res.status(200).json({book})
+}
+
+const updateBook = async (req,res,next)=>{
+    const {name,author,description,price,category,quantity} = req.body;
+    let books 
+    const id = req.params.id;
+    let available= false;
+    if(quantity>0){
+        available = true
+    }
+    try {
+        books= await Book.findByIdAndUpdate(id,{
+            image,
+            name,
+            author,
+            description,
+            price,
+            category,
+            quantity,
+            available
+        });
+        books = await books.save()
+
+    } catch (error) {
+        console.log(error);
+    }
+    if(!books){
+        return res.status(404).json({message:"Unable to update"})
+    }
+    return res.status(200).json({books})
+}
+
+
+
+const removeBook = async (req,res,next)=>{
+    let books 
+    const id = req.params.id;
+    try {
+        books= await Book.findByIdAndRemove(id);
+
+    } catch (error) {
+        console.log(error);
+    }
+    if(!books){
+        return res.status(404).json({message:"Unable to delete"})
+    }
+    return res.status(200).json({message:"Book deleted"})
+}
+module.exports = {getAllBooks,
+                    addBook,
+                    getbook,
+                    updateBook,
+                    removeBook}
