@@ -31,7 +31,6 @@ const bookSchema = new Schema({
         type: Number,
         required: true
     },
-    borrowedBy: [{ type: Schema.Types.ObjectId, ref: "users" }],
     available:{
         type: Boolean,
         require:true

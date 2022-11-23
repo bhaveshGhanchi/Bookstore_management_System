@@ -1,6 +1,9 @@
-const User = require('../model/user')
+const User = require("../model/user")
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 
+var privateKey = process.env.PVTKEY;
 // Api to get  details of users in the database
 const getAllUsers =async (req,res,next)=>{
     let user 
@@ -31,6 +34,8 @@ const register = async(req,res,next)=>{
             ]
         })
         if(user){
+            
+            
             return res.status(500).json({message:"User already registered"})
         }
         user = new User({
@@ -43,7 +48,12 @@ const register = async(req,res,next)=>{
     if(!user){
         return res.status(500).json({message:"Unable to add"})
     }
-    return res.status(200).json({user})
+    if(user){
+        var token = jwt.sign({user}, privateKey, { algorithm: 'RS256'})  
+        console.log(token);
+        return res.status(200).json({tokenid: token})
+    }
+    
 }
 
 // API for user to sign up
@@ -61,7 +71,9 @@ const login = async(req,res,next)=>{
     if(!user){
         return res.status(500).json({message:"Login failed"})
     }
-    return res.status(200).json({user})
+    console.log(privateKey);
+    const token = jwt.sign({user}, privateKey)  
+    return res.status(200).json({status:"ok",tokenid: token})
 }
 
 // API to search the user by it's name,phone number and email 
