@@ -1,7 +1,28 @@
-import React from 'react';
+import React , { useEffect }  from 'react';
+import jwt from 'jsonwebtoken'
+import { useNavigate } from 'react-router-dom';
 import { Table } from 'reactstrap';
 
 function Log() {
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+        const user = jwt.decode(token)
+        if(!user){
+            localStorage.removeItem('token')
+            navigate('/login')
+        }
+        else{
+            console.log(user);
+        }
+    }else{
+        navigate('/login')
+    }
+})
+    
+
         return(
         <div className='records'>
             <div className="mt-6 text-center align-self-center full">

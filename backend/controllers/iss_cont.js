@@ -73,9 +73,9 @@ const  issueBook = async(req,res,next)=>{
 const retBook = async (req,res,next)=>{
     const id = req.params.id;
     let issue;
-    const todayDate = new Date();
+    let todayDate = new Date();
     issue = await Issue.findById(id)
-    console.log(issue);
+    console.log(todayDate);
     
     try {
         

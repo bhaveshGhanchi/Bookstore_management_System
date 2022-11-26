@@ -23,9 +23,7 @@ const getAllUsers =async (req,res,next)=>{
 const register = async(req,res,next)=>{
     const {name,email,phone,password} = req.body;
     let user
-    user = new User({
-        name,email,phone,password
-    });
+    console.log(name,email,phone,password);
     try {
         user = await User.findOne({
             $or:[
@@ -34,8 +32,6 @@ const register = async(req,res,next)=>{
             ]
         })
         if(user){
-            
-            
             return res.status(500).json({message:"User already registered"})
         }
         user = new User({
@@ -49,17 +45,19 @@ const register = async(req,res,next)=>{
         return res.status(500).json({message:"Unable to add"})
     }
     if(user){
-        var token = jwt.sign({user}, privateKey, { algorithm: 'RS256'})  
+        const token = jwt.sign({user}, privateKey)    
         console.log(token);
         return res.status(200).json({tokenid: token})
     }
     
 }
 
+
 // API for user to sign up
 const login = async(req,res,next)=>{
     // const {email,password} = req.body;
     let user
+    console.log(res.body);
     try {
         user = await User.findOne({
             email: req.body.email,
@@ -71,7 +69,6 @@ const login = async(req,res,next)=>{
     if(!user){
         return res.status(500).json({message:"Login failed"})
     }
-    console.log(privateKey);
     const token = jwt.sign({user}, privateKey)  
     return res.status(200).json({status:"ok",tokenid: token})
 }

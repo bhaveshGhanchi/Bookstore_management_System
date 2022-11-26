@@ -1,7 +1,55 @@
-import React from 'react';
-import { Table } from 'reactstrap';
 
-const History = () => {
+import { Table } from 'reactstrap';
+import React , { useEffect,useState }  from 'react';
+import { useNavigate } from 'react-router-dom';
+import jwt from 'jsonwebtoken'
+import Issue from './Issue';
+
+    const History = () => {
+  const navigate = useNavigate();
+    async function getBooks(id){
+
+        const resp  = await fetch(`http://localhost:8989/issue/getIss/${id}`)
+        const data =  await resp.json()
+        setBookData(data.issue)
+        const d = data.issue;
+        console.log(d[0]);
+        // d.map(b=> console.log(b))
+    }
+    const [userd,setUserd] = useState('')
+    const [bookData,setBookData] = useState([])
+    useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+        const userdata = jwt.decode(token)
+        if(!userdata){
+            localStorage.removeItem('token')
+            navigate('/login')
+        }
+        else{
+
+            setUserd(userdata.user._id)
+            // console.log(userdata.user._id);
+        }
+    }else{
+        navigate('/login')
+    }
+    
+},[])
+
+useEffect(()=>{
+    if(userd){
+        // console.log(userd);
+        getBooks(userd)
+    }
+},[userd])
+
+        let i =0
+        const bookEle = bookData.map(book=>{
+            i+=1
+             return <Issue data = {book} key ={i} sr ={i} />
+            
+            })
   return (
     <div className='records'>
     <div className="mt-6 text-center align-self-center full sma">
@@ -9,37 +57,23 @@ const History = () => {
             <div className="col-12">
                 <h3 className='headingss'>Issue History</h3>
                 <Table className='tab' striped bordered hover responsive>
+                <table>
+
         <thead>
            <tr>
             <th className='th2'>S.No.</th>
             <th className='th2'>Name of Book</th>
-            <th className='th2'>ISBN number</th>
+            
             <th className='th2'>Issue Date</th>
-            <th className='th2'>Return Deadline</th>
+            <th className='th2'>Return Date</th>
             <th className='th2'>Return status</th> 
-            <th className='th2'>Fine (in Rs.)</th> 
+            
            </tr>
         </thead>
         <tbody>
-            <tr>
-                <td className='th2'>1</td>
-                <td className='th2'>python</td>
-                <td className='th2'>35656543</td>
-                <td className='th2'>20-11-2022</td>
-                <td className='th2'>22-11-2022</td>
-                <td className='th2'>pending</td>
-                <td className='th2'>0 Rs</td>
-            </tr>
-            <tr>
-                <td className='th2'>2</td>
-                <td className='th2'>javascript</td>
-                <td className='th2'>54645354</td>
-                <td className='th2'>20-11-2022</td>
-                <td className='th2'>22-11-2022</td>
-                <td className='th2'>pending</td>
-                <td className='th2'>0 Rs</td>
-            </tr>
+            {bookEle}
         </tbody>
+                </table>
         </Table>
             </div>
             </div>

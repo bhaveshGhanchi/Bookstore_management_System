@@ -3,6 +3,7 @@ const Book = require("../model/book.js")
 // Api to get details of book in the database
 const getAllBooks =async (req,res,next)=>{
     let books 
+    console.log("get allbooks");
     try {
         books = await Book.find();
 

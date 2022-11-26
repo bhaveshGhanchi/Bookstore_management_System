@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import './App.css';
 import Navbar from './Component/Navbar';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -11,9 +11,13 @@ import History from './Component/History';
 import Search from './Component/Search';
 import RegistrationForm from './Component/Register';
 import LoginForm from './Component/Login';
+import { Provider } from './store/Context';
+import { initialState, reducer } from './store/userReduce';
 
 function App() {
+	const [state,dispatch] = useReducer(reducer,initialState)
 return (
+	<Provider value={{state,dispatch}}>
 	<Router>
 	<Navbar />
 	<Routes>
@@ -29,6 +33,7 @@ return (
 	</Routes>
 	
 	</Router>
+	</Provider>
 );
 }
 

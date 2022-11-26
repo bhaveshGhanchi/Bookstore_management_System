@@ -41,6 +41,21 @@ export const Bars = styled(FaBars)`
 	}
 `;
 
+export const UserData = styled.div`
+color: white;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	text-decoration: none;
+	font-size: 18px;
+	padding: 0 1rem;
+	height: 100%;
+	cursor: pointer;
+	&.active {
+		color: #4d4dff;
+	}
+`;
+
 export const NavMenu = styled.div`
 display: flex;
 align-items: center;
