@@ -2,24 +2,30 @@ import React from "react";
 
 export default function Issue(props){
     const{sr} =  props
-    const{name} = props.data.book
-    const{issueDate,returned,returnDate} = props.data
+    const{name,image} = props.data.book
+    const{issueDate,returned,dueDate} = props.data
     const issDate = issueDate.split('T')[0]
-    // let retDate= ''
-    // console.log(returnDate);
-    // if(returnDate!== undefined){
-
-    //     let retDate = returnDate.split('T')[0]
-    // }
-    console.log(props.data)
+    const dDate = dueDate.split('T')[0]
+    
     return(
-        
-        <tr>
+        <>
+            <div className="contact-card-inverse">
+                <img src={image}/>
+                <div className="contact-data">
+                    <h2>{name}</h2>
+                    <h3>Issue Date: {issDate}</h3>
+                    <h3>Due Date: {dDate}</h3>
+                </div>
+                <h3>{returned?<p>Returned</p>:<p>Not returned</p>}</h3>
+                
+            </div>
+        {/* <tr>
             <th className='th2'>{sr}</th>
             <th className='th2'>{name}</th>
             <th className='th2'>{issDate}</th>
-            <th className='th2'>{returnDate}</th>
+            <th className='th2'>{dDate}</th>
             <th className='th2'>{returned?<p>Returned</p>:<p>Not returned</p>}</th> 
-           </tr>
+        </tr> */}
+        </>
     )
-}
+    }

@@ -46,7 +46,7 @@ const Books = () => {
         <div className="row">
             <div className="col-12">
             <h3 align="center" className='headingss'>List of All books</h3>
-            <Table className='tab' striped bordered hover responsive>           
+            {/* <Table className='tab' striped bordered hover responsive>           
                 <thead>
                 <tr>
                     <th className='th2'>S.No.</th>
@@ -60,7 +60,10 @@ const Books = () => {
                     {bookEle}
                 </tbody>
             
-        </Table>
+        </Table> */}
+            <div className="contacts">
+            {bookEle}   
+            </div>
             </div>
         </div>
     </div>

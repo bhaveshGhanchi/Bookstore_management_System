@@ -56,25 +56,9 @@ useEffect(()=>{
             <div className="row text-center justify-content-center">
             <div className="col-12">
                 <h3 className='headingss'>Issue History</h3>
-                <Table className='tab' striped bordered hover responsive>
-                <table>
-
-        <thead>
-           <tr>
-            <th className='th2'>S.No.</th>
-            <th className='th2'>Name of Book</th>
-            
-            <th className='th2'>Issue Date</th>
-            <th className='th2'>Return Date</th>
-            <th className='th2'>Return status</th> 
-            
-           </tr>
-        </thead>
-        <tbody>
-            {bookEle}
-        </tbody>
-                </table>
-        </Table>
+                <div className="contacts-i">
+            {bookEle}   
+            </div>
             </div>
             </div>
             </div>

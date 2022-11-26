@@ -24,6 +24,7 @@ const  issueBook = async(req,res,next)=>{
     let issue;
 
     const todayDate = new Date();
+    const dueDate= new Date(new Date().setDate(new Date().getDate() + 7))
     let book = await Book.findById(bookId)
     try {
         if(!book.available){
@@ -32,7 +33,8 @@ const  issueBook = async(req,res,next)=>{
         issue= new Issue({
             user: userId,
             book: bookId,
-            issueDate: todayDate
+            issueDate: todayDate,
+            dueDate: dueDate
         })
         await issue.save();
     } catch (error) {
@@ -54,6 +56,7 @@ const  issueBook = async(req,res,next)=>{
             author: book.author,
             description:book.description,
             price: book.price,
+            
             category: book.category,
             quantity: book.quantity-1,
             available: book.available
@@ -90,6 +93,7 @@ const retBook = async (req,res,next)=>{
             book:issue.book,
             issueDate: issue.issueDate,
             returned:true,
+            dueDate:issue.dueDate,
             returnDate:todayDate
         })
     } catch (error) {
