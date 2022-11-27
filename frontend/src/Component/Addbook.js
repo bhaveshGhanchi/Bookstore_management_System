@@ -1,186 +1,111 @@
-import React from 'react';
-import {Button, Label, Col, Row} from 'reactstrap';
-import { Control, LocalForm, Errors  } from 'react-redux-form';
+import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const required = (val) => val && val.length;
-const requiredNum = (val) => !!(val);
-const maxLength = (len) => (val) => !(val) || (val.length <= len);
-const minLength = (len) => (val) => (val) && (val.length >= len);
-const maxVal = (len) => (val) => !(val) || (val<= len);
-const minVal = (len) => (val) => (val) && (val>= len);
-const isNumber = (val) => !isNaN(Number(val));
 
 function AddBook() {
+    const navigate = useNavigate();
+    const [imgLink, setImgLink] = useState('');
+    const [BName, setBName] = useState('');
+    const [AName, setAName] = useState('');
+    const [desription, setDesription] = useState('');
+    const [Cat,setCat] = useState('');
+    const [quantity,setQuantity] = useState('');
+
+    async function addbk(event) {
+        event.preventDefault()
+        console.log(imgLink,BName,AName,desription,Cat,quantity);
+        
+        const response= await fetch('http://localhost:8989/book/addBook',{
+            method: 'POST',
+            headers:{
+                'Content-type':"application/json"
+            },
+            body: JSON.stringify({
+                image:imgLink,
+                name:BName,
+                author:AName,
+                description:desription,
+                category:Cat,
+                quantity:quantity
+            })
+          })
+
+        const data = await response.json()
+        if(data){
+            console.log(data);
+            alert("book added")
+        }
+        else{
+            alert("book Not added")
+        }
+    }
+
+    const handleInputChange = (e) => {
+        const {id , value} = e.target;
+        if(id === "imgLink"){
+            setImgLink(value);
+        }
+        if(id === "BName"){
+            setBName(value);
+        }
+        if(id === "AName"){
+            setAName(value);
+        }
+        if(id === "desription"){
+            setDesription(value);
+        }
+        if(id === "Cat"){
+            setCat(value);
+        }
+        if(id === "quantity"){
+            setQuantity(value);
+        }
+
+
+        
+    }
+
+    
+
  return (
-    <div className="container">
-    <div className="row justify-content-center heading">
-    <div className="col-12">
-  <h3 align="center">  Add a book</h3>
-  </div>
-    </div>
-    <div className="row row-content justify-content-center">
-    <LocalForm onSubmit={(values) => {
-        this.props.postBook(values.name, values.author, values.description, values.isbn, values.cat, values.floor, values.shelf, values.copies);
-    }}>
-                    <Row className="form-group">
-                                <Label htmlFor="name" md={2}>Name </Label>
-                                <Col md={4}>
-                                    <Control model=".name" id="name" name="name"
-                                        placeholder="Name of book"
-                                        className="form-control"
-                                        validators={{
-                                            required, minLength: minLength(3)
-                                        }}
-                                         />
-                                    <Errors
-                                        className="text-danger"
-                                        model=".name"
-                                        show="touched"
-                                        messages={{
-                                            required: 'Required',
-                                            minLength: ' Must be greater than 2 characters',
-                                            uniqueName: ' There exists a book with this name already'
-                                        }}
-                                     />
-                                </Col>
-                                 <Label htmlFor="author" md={2}>Authors </Label>
-                                <Col md={4}>
-                                    <Control model=".author" id="author" name="author"
-                                        placeholder="Name of authors"
-                                        className="form-control"
-                                        validators={{
-                                            required, minLength: minLength(3)
-                                        }}
-                                         />
-                                    <Errors
-                                        className="text-danger"
-                                        model=".author"
-                                        show="touched"
-                                        messages={{
-                                            required: 'Required',
-                                            minLength: ' Must be greater than 2 characters'
-                                        }}
-                                     />
-                                </Col>
-                            </Row>
-                            <Row className="form-group">
-                                <Label htmlFor="isbn" md={2}>ISBN No.</Label>
-                                <Col md={4}>
-                                    <Control model=".isbn" id="isbn" name="isbn"
-                                        placeholder="ISBN no. of book"
-                                        className="form-control"
-                                        validators={{
-                                            required, minLength: minLength(10), maxLength: maxLength(13), isNumber
-                                        }}
-                                         />
-                                    <Errors
-                                        className="text-danger"
-                                        model=".isbn"
-                                        show="touched"
-                                        messages={{
-                                            required: 'Required',
-                                            minLength: ' Must be greater than 9 numbers',
-                                            maxLength: ' Must be 13 numbers or less',
-                                            isNumber: ' Must be a number',
-                                            uniqueIsbn: ' There exists a book with this ISBN No.'
-                                        }}
-                                     />
-                                </Col>
-                                <Label htmlFor="copies" md={3}> Copies Available</Label>
-                                <Col md={3}>
-                                    <Control model=".copies" id="copies" name="copies"
-                                        placeholder="Number of copies available"
-                                        className="form-control"
-                                        validators={{
-                                            requiredNum, minVal: minVal(1), maxVal: maxVal(1000), isNumber
-                                        }}
-                                         />
-                                    <Errors
-                                        className="text-danger"
-                                        model=".copies"
-                                        show="touched"
-                                        messages={{
-                                            requiredNum: 'Required',
-                                            minVal: ' Must be greater than 0',
-                                            maxVal: ' Must be 1000 or less',
-                                            isNumber: ' Must be a number'
-                                        }}
-                                     />
-                                </Col>
-                            </Row>
+    
+    <div className='records'>
+        <div className="form3">
+            <div className='headi'>Add Book to Library</div><br/>
+            <form>
 
-      
-                        <Row className="form-group">
-                            <Col>
-                            <Label htmlFor="cat">Category</Label>
-                            <Control defaultValue="Romance" model=".cat" id="cat" className="form-control">
-                              <option>Romance</option> <option>Technology</option>
-                              <option>Computer Science</option> <option>Management</option>
-                              <option>Electronics</option> <option>Physics</option>
-                              <option>Chemistry</option> <option>Mathematics</option>
-                              <option>Fiction</option> <option>Philosophy</option>
-                              <option>Language</option> <option>Arts</option>
-                              <option>Other</option> 
-
-                            </Control>
-                            </Col>
-                            <Col>
-                            <Label htmlFor="floor">Floor </Label>
-                            <Control defaultValue={0} model=".floor" id="floor" 
-                            className="form-control" >
-                              <option>0</option> <option>1</option>
-                              <option>2</option> <option>3</option>
-                              <option>4</option> <option>5</option>
-                              <option>6</option> <option>7</option>
-                              <option>8</option> 
-                            </Control>
-                            </Col>
-                        </Row>
-                        
-                        <Row className="form-group text-center justify-content-center">
-                                <Label htmlFor="shelf" md={3}> Shelf</Label>
-                                <Col md={6}>
-                                    <Control model=".shelf" id="shelf" name="shelf"
-                                        placeholder="Shelf no. for locating book"
-                                        className="form-control"
-                                        validators={{
-                                            requiredNum, minVal: minVal(1), maxVal: maxVal(100), isNumber
-                                        }}
-                                         />
-                                    <Errors
-                                        className="text-danger"
-                                        model=".shelf"
-                                        show="touched"
-                                        messages={{
-                                            requiredNum: 'Required',
-                                            minVal: ' Must be greater than 0',
-                                            maxVal: ' Must be 100 or less',
-                                            isNumber: ' Must be a number'
-                                        }}
-                                     />
-                                </Col>
-                            </Row>
-
-                     
-                        <Row className="form-group">
-                                <Label htmlFor="description" md={2}>Description</Label>
-                                <Col md={10}>
-                                    <Control model=".description" id="description" name="description"
-                                        rows="12"
-                                        placeholder="Some description of the book"
-                                        className="form-control" />
-                                </Col>
-                            </Row>
-                          <Row className="align-self-center">
-                          <Col className="text-center">
-                        <Button type="submit" className="bg-primary">
-                            Submit
-                        </Button>
-                        </Col>
-                        </Row>
-                    </LocalForm>
-                    </div>
-                <br/>
+            <div className="form-body">
+                <div className="inl">
+                    <label className="form__label" htmlFor="imgLink">Book Image: </label>
+                    <input className="form__input" onChange = {(e) => handleInputChange(e)} value={imgLink} type="text" id="imgLink"/>
+                </div>
+                <div className="inl">
+                    <label className="form__label" htmlFor="BName">Name of Book: </label>
+                    <input className="form__input" onChange = {(e) => handleInputChange(e)} value={BName} type="text" id="BName"/>
+                </div>
+                <div className="inl">
+                    <label className="form__label" htmlFor="AName">Author's Name: </label>
+                    <input  type="text" name="" onChange = {(e) => handleInputChange(e)} id="AName" value={AName} className="form__input"/>
+                </div><br/>
+                <div className="inl">
+                    <label className="form__label" htmlFor="password">Description: </label>
+                    <textarea className="form__input" onChange = {(e) => handleInputChange(e)} name="" value={desription} id="desription" cols="50" rows="5"></textarea>
+                </div>
+                <div className="inl">
+                    <label className="form__label" htmlFor="Cat">Category: </label>
+                    <input className="form__input" onChange = {(e) => handleInputChange(e)} type="text" value={Cat} id="Cat"/>
+                </div>
+                <div className="inl">
+                    <label className="form__label" htmlFor="quantity">No. of Copies: </label>
+                    <input  type="number" value={quantity} onChange = {(e) => handleInputChange(e)} step="1" min={0} name="" id="quantity" className="form__input"/>
+                </div><br/>
+            </div>
+                <div className="d">
+                    <input type="submit" onClick={addbk} value="Add" className="btn foote"/>
+                </div>
+            </form>
+            
+        </div>
     </div>
  );
 }

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import { useNavigate } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Bk from './Bk';
-import { set } from 'mongoose';
+
 
 const Books = () => {
 
@@ -60,10 +60,10 @@ const Books = () => {
     <div className='records'>
         <div className="container sma">
         <div className="row">
-            <div className="col-12">
+            <div className="col-12-book">
             <h3 align="center" className='headingss'>List of All books</h3>
             <div className="search">
-            <input className='search-bar' placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)} />
+            <input className='search-bar' placeholder="Search Book" onChange={event => setQuery(event.target.value)} />
             </div>
             <div className="contacts">
             {bookEle}   

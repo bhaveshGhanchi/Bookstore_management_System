@@ -41,8 +41,9 @@ const getbook =async (req,res,next)=>{
 
 // API to add Book to the database
 const addBook =async(req,res,next)=>{
-    const {image,name,author,description,price,category,quantity} = req.body;
+    const {image,name,author,description,category,quantity} = req.body;
     let book;
+    let price =0;
     let available= false;
     if(quantity>0){
         available = true

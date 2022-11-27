@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 8989
 
 // Calling the connect file to connect with the atlas database
-const con = require('./connect.js')
+const conn = require('./connect.js')
 const cors = require('cors')
 
 

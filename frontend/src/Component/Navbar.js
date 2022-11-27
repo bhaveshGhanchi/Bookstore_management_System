@@ -13,7 +13,7 @@ const Navbar = () => {
 	const [username,setUser] = useState('')
 	
 	
-	
+	console.log(state.name);
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
 		

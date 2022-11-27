@@ -4,6 +4,7 @@ import Navbar from './Component/Navbar';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './Component/HomeComponent';
 import Foot from './Component/Foot';
+import AddBook from './Component/Addbook';
 import UserDetail from './Component/UserDetails';
 import Loading from './Component/Loading';
 import Books from './Component/Books';
@@ -25,7 +26,7 @@ return (
 		<Route path='/Books' element={<Books />} />
 		<Route path='/UserDetails' element={<UserDetail />} />
 		<Route path='/Profile' element={<Loading />} />
-		<Route path='/Addbook' element={<Search />} />
+		<Route path='/Addbook' element={<AddBook />} />
 		<Route path='/History' element={<History />} />
 		<Route path='/Addbook' element={<Search />} />
 		<Route path='/Register' element={<RegistrationForm />} />

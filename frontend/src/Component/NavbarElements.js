@@ -10,7 +10,7 @@ export const Nav = styled.nav`
 	padding: 0.2rem;
 	z-index: 12;
 	font-size: 35px;
-	position: fixed;
+	
 `;
 
 export const NavLink = styled(Link)`
@@ -54,7 +54,8 @@ color: white;
 	cursor: pointer;
 	&.active {
 		color: #4d4dff;
-	}
+	},
+	
 `;
 
 export const NavMenu = styled.div`
