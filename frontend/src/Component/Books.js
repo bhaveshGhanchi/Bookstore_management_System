@@ -3,11 +3,12 @@ import jwt from 'jsonwebtoken'
 import { useNavigate } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import Bk from './Bk';
+import { set } from 'mongoose';
 
 const Books = () => {
     const navigate = useNavigate();
     const [bookData,setBookData] = useState([])
-
+    const [userId,SetUserId] =  useState(null)
     async function getBooks(){
 
         const resp  = await fetch("http://localhost:8989/book/allBooks")
@@ -24,6 +25,10 @@ const Books = () => {
                 localStorage.removeItem('token')
                 navigate('/login')
             }
+            else{
+                console.log(user.user._id);
+                SetUserId(user.user._id)
+            }
             
         }else{
             navigate('/login')
@@ -36,7 +41,7 @@ const Books = () => {
         let i =0
         const bookEle = bookData.map(book=>{
             i+=1
-             return <Bk data = {book} key ={i} sr ={i} />
+             return <Bk data = {book} key ={i} userid ={userId} />
             
             })
     
@@ -46,21 +51,6 @@ const Books = () => {
         <div className="row">
             <div className="col-12">
             <h3 align="center" className='headingss'>List of All books</h3>
-            {/* <Table className='tab' striped bordered hover responsive>           
-                <thead>
-                <tr>
-                    <th className='th2'>S.No.</th>
-                    <th className='th2'>Name of Book</th>
-                    <th className='th2'>Authors</th>
-                    <th className='th2'>Price</th>
-                    <th className='th2'>Copies available</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {bookEle}
-                </tbody>
-            
-        </Table> */}
             <div className="contacts">
             {bookEle}   
             </div>

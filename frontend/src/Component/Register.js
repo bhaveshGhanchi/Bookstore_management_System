@@ -55,6 +55,7 @@ function RegistrationForm() {
           })
 
         const data = await response.json()
+        console.log(data)
         if(data.tokenid){
             localStorage.clear()
             localStorage.setItem('token',data.tokenid)

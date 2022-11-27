@@ -11,9 +11,14 @@ const Navbar = () => {
 	const navigate = useNavigate();
 	const [admin, setAdmin] = useState(false)
 	const [username,setUser] = useState('')
+	
+	
+	
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
+		
 		if(token){
+			
 			const userdata = jwt.decode(token)
 			if(!userdata){
 				localStorage.removeItem('token')
@@ -30,7 +35,9 @@ const Navbar = () => {
 			}
 			
 		}
-	},[])
+	},[localStorage.getItem('token')])
+
+	
 
 	function logOut(){
 		localStorage.clear()

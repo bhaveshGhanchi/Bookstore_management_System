@@ -79,7 +79,7 @@ const retBook = async (req,res,next)=>{
     let todayDate = new Date();
     issue = await Issue.findById(id)
     console.log(todayDate);
-    
+    let check
     try {
         
         if(!issue){
@@ -88,7 +88,7 @@ const retBook = async (req,res,next)=>{
         if(issue.returned ==true){
             return res.status(200).json({message:"book already returned"})
         }
-        await issue.updateOne({
+        check =await issue.updateOne({
             user:issue.user,
             book:issue.book,
             issueDate: issue.issueDate,
@@ -124,7 +124,7 @@ const retBook = async (req,res,next)=>{
     }if(!books){
         return res.status(404).json({message:"Unable to update Book"})
     }
-    return res.status(200).json({issue})
+    return res.status(200).json({check})
 }
 
 
