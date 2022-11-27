@@ -6,12 +6,18 @@ import Bk from './Bk';
 import { set } from 'mongoose';
 
 const Books = () => {
+
+    
     const navigate = useNavigate();
     const [bookData,setBookData] = useState([])
     const [userId,SetUserId] =  useState(null)
-    async function getBooks(){
 
-        const resp  = await fetch("http://localhost:8989/book/allBooks")
+    const [query, setQuery] = useState(" ")
+
+    async function getBooks(){
+        
+    
+        const resp  = await fetch(`http://localhost:8989/book/${query}`)
         const data =  await resp.json()
         setBookData(data.books)
         // const d = data.books;
@@ -34,9 +40,14 @@ const Books = () => {
             navigate('/login')
         }
         
-        getBooks()
+        
     
         },[])
+
+
+        useEffect(()=>{
+            getBooks()
+        },[query])
         // console.log(bookData);
         let i =0
         const bookEle = bookData.map(book=>{
@@ -51,6 +62,9 @@ const Books = () => {
         <div className="row">
             <div className="col-12">
             <h3 align="center" className='headingss'>List of All books</h3>
+            <div className="search">
+            <input className='search-bar' placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)} />
+            </div>
             <div className="contacts">
             {bookEle}   
             </div>

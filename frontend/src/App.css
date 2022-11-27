@@ -135,6 +135,8 @@ table {
   background: linear-gradient(to right, #4a729b, #bdc3c7);
   margin-top: 0;
   padding: 1px;
+  padding-top: 45px;
+  min-height: 100vh;
 }
 
 .tab{

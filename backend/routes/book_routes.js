@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const {getAllBooks,addBook,getbook,updateBook,removeBook} = require('../controllers/book_cont')
 
-//  routes to GET api to get all books in database. link: http://localhost:{PORT}/book/allBooks
-router.get('/allBooks',getAllBooks); 
+//  routes to GET api to get all books in database. link: http://localhost:{PORT}/book/
+router.get('/',getAllBooks); 
 
 //  routes to POST api to add book to database. link: http://localhost:{PORT}/book/addBook
 router.post('/addBook',addBook); 
