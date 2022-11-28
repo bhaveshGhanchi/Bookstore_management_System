@@ -60,7 +60,10 @@ const addBook =async(req,res,next)=>{
             available
         });
         await book.save();
-    }catch(err){ console.log(err)}
+    }catch(err){ 
+        console.log(err)
+        return res.status(500).json({message:"Unable to add"})
+    }
 
     if(!book){
         return res.status(500).json({message:"Unable to add"})

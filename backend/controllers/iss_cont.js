@@ -10,6 +10,7 @@ const getAllIss =async (req,res,next)=>{
 
     } catch (error) {
         console.log(error);
+        
     }
     if(!issue){
         return res.status(404).json({message:"No issue found"})
@@ -65,6 +66,7 @@ const  issueBook = async(req,res,next)=>{
 
     } catch (error) {
         console.log(error);
+        return res.status(404).json({message:"Unable to update Book"})
     }
     if(!book){
         return res.status(404).json({message:"Unable to update Book"})

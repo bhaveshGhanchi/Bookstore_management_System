@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './style.css'
 // import axios from 'axios';
+import Alert from 'react-bootstrap/Alert';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -59,8 +60,10 @@ function LoginForm() {
         const data = await response.json()
         if(data.tokenid){
             localStorage.clear()
-            localStorage.setItem('token',data.tokenid)
-            alert("login successful");
+            localStorage.setItem('token',data.tokenid);
+            <Alert key={'primary'} variant={'primary'}>
+                This is a {'primary'} alert—check it out!
+            </Alert>
             console.log(data);
             navigate('/')
         }
@@ -71,28 +74,27 @@ function LoginForm() {
     }
 
     return(
-        <div className="records">
-            <form onSubmit={handleSubmit} >
-        <div className="form2">
-            <div className='headi'>Login Form</div>
+        <div className="backGrid">
+   
+        <form onSubmit={handleSubmit} >
+        <div className="formBody">
+            <div className='formhead'>Sign In</div>
                 <div className="form-body">
                     <div className="email">
-                        <label className="form__label" htmlFor="email">Email </label>
                         
-                        <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)}/>
+                        <input  type="email" placeholder='Email' id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)}/>
                         
                     </div>
-                    <div className="password">
-                        <label className="form__label" htmlFor="password">Password </label>
+                    <div className="password">  
                         
-                        <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} />
+                        <input className="form__input" placeholder='password' type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} />
                     </div>
                     <div className="d">
-                    <input type="submit" value="Login" className="btn foote"/>
+                    <input type="submit" value="Login" className="form_but"/>
                     </div>
                 </div>
             
-            <div className="d1">Don't have an account?<span className="Redirect" to='/Register' ><a href="/Register" className='Redirect'> Register now</a></span></div>
+            <div className="below_form">Don't have an account?<span className="Redirect" to='/Register' ><a href="/Register" className='Redirect'> Register now</a></span></div>
         </div>
             </form>
         </div>

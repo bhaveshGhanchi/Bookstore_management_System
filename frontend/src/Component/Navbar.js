@@ -12,8 +12,8 @@ const Navbar = () => {
 	const [admin, setAdmin] = useState(false)
 	const [username,setUser] = useState('')
 	
-	
-	console.log(state.name);
+	// console.log(username);
+	// console.log(state.name);
 	useEffect(()=>{
 		const token = localStorage.getItem('token')
 		
@@ -49,6 +49,7 @@ const Navbar = () => {
 return (
 	
 	<>
+	{state.name &&
 	<Nav>
 		<NavMenu>
 			<NavLink className="logo" to="/" >Book Store</NavLink>
@@ -67,18 +68,20 @@ return (
 			{state.name?
 					<>
 					<UserData>{state.name}</UserData>
-					<button onClick={logOut}>
+					<button
+					className="logBut"
+					onClick={logOut}>
 						log out
 					</button>
 					</>
 				:
 					<>
-				<NavBtnLink to='/Login'>Login</NavBtnLink>
-				<NavBtnLink to='/Register' >Register</NavBtnLink>
+				
 					</> 
 			}
         </NavBtn>
 	</Nav>
+}
 	</>
 );
 };

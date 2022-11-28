@@ -39,26 +39,20 @@ export default function Bk(props) {
                 <img src={image} />
                 <h3>{name}</h3>
                 <div className="info-group">
-                    <p>{author}</p>
+                    <p>Author: {author}</p>
                 </div>
                 <div className="info-group">
-                    <p>Rs {price}</p>
+                    <p>Category: {price}</p>
                 </div>
                 <div className="info-group">
                     <p>Copies {qunatData.quan}</p>
                 </div>
-                <button 
+                <button className="issBut"
                     disabled={!qunatData.aval} 
                     onClick={issueBk} 
-                >{available?<>Issue book</>:<>Out of Stock</>}</button>
+                >{qunatData.aval?<>Issue book</>:<>Out of Stock</>}</button>
             </div>
         </>
-        // <tr>
-        //         <td className='th2'>{props.sr}</td>
-        //         <td className='th2'>{name}</td>
-        //         <td className='th2'>{author}</td>
-        //         <td className='th2'>{price}</td>
-        //         <td className='th2'>{quantity}</td>
-        // </tr>
+        
     );
 }

@@ -40,6 +40,7 @@ const register = async(req,res,next)=>{
         await user.save();
     } catch (error) {
         console.log(error);
+        return res.status(500).json({message:"Unable to add"})
     }
     if(!user){
         return res.status(500).json({message:"Unable to add"})
@@ -65,6 +66,7 @@ const login = async(req,res,next)=>{
         })
     } catch (error) {
         console.log(error);
+        return res.status(500).json({message:"Login failed"})
     }
     if(!user){
         return res.status(500).json({message:"Login failed"})

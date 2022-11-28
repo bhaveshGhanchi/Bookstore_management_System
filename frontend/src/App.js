@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './Component/Navbar';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
@@ -17,6 +17,8 @@ import { initialState, reducer } from './store/userReduce';
 
 function App() {
 	const [state,dispatch] = useReducer(reducer,initialState)
+	
+	
 return (
 	<Provider value={{state,dispatch}}>
 	<Router>
@@ -24,13 +26,13 @@ return (
 	<Routes>
 		<Route exact path='/' element={<Home />} />
 		<Route path='/Books' element={<Books />} />
+		<Route path='/Register' element={<RegistrationForm />} />
+		<Route path='/Login' element={<LoginForm />} />
 		<Route path='/UserDetails' element={<UserDetail />} />
 		<Route path='/Profile' element={<Loading />} />
 		<Route path='/Addbook' element={<AddBook />} />
 		<Route path='/History' element={<History />} />
 		<Route path='/Addbook' element={<Search />} />
-		<Route path='/Register' element={<RegistrationForm />} />
-		<Route path='/Login' element={<LoginForm />} />
 	</Routes>
 	
 	</Router>

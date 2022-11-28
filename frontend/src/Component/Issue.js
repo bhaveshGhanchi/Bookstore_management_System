@@ -27,9 +27,9 @@ export default function Issue(props){
                     <h3>Due Date: {dDate}</h3>
                 </div>
                 <h3>{returnCheck?
-                    <>Returned</>
+                    <><button className="retBut" disabled={true} >Returned</button></>
                     :
-                    <><button onClick={issueBk} >Book return</button></>
+                    <><button className="retBut" onClick={issueBk} >Book return</button></>
                 }</h3>
                 
             </div>
