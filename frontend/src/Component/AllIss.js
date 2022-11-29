@@ -9,7 +9,6 @@ export default function AllIss(props){
     const dDate = dueDate.split('T')[0]
     const[returnCheck,setRtnChk] = useState(returned)
     async  function issueBk(){
-    
         const resp  = await fetch(`http://localhost:8989/issue/retBook/${_id}`)
         const data =  await resp.json()
         console.log(data)
@@ -19,8 +18,7 @@ export default function AllIss(props){
     }
     return(
         <>
-            <div className="contact-card-second">
-                
+            <div className="contact-card-second">  
                 <img src={bookData.image}/>
                 <div className="contact-data">
                     <h4>Name: {userData.name}</h4>
@@ -29,9 +27,9 @@ export default function AllIss(props){
                     <h5>Due Date: {dDate}</h5>
                 </div>
                 <h5>{returnCheck?
-                    <>Returned</>
+                    <><button className="retBut" disabled={true} >Returned</button></>
                     :
-                    <><button onClick={issueBk} >Book return</button></>
+                    <><button className="retBut" onClick={issueBk} >Book return</button></>
                 }</h5>
                 
             </div>

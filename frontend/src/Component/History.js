@@ -43,7 +43,7 @@ const History = () => {
 
 useEffect(()=>{
     if(userd){
-        // console.log(userd);
+        console.log(userd);
         getBooks(userd)
     }
 },[userd,click])

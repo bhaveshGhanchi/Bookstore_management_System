@@ -12,6 +12,7 @@ export const Nav = styled.nav`
 	z-index: 12;
 	font-size: 35px;
 	
+	
 `;
 
 export const NavLink = styled(Link)`
@@ -20,16 +21,40 @@ export const NavLink = styled(Link)`
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
+	padding: 0px 5px;
 	text-decoration: none;
 	font-size: 18px;
 	padding: 0 1rem;
-	height: 100%;
+	height: 58px;
 	cursor: pointer;
+	box-sizing: border-box;
 	&.active {
 		color: #20DF7F;
+		border-bottom: 2px solid #20DF7F;
 	}
 	&:hover{
 		color:#20DF7F;
+		border-bottom: 2px solid #20DF7F;
+	}
+`;
+export const NavLink1= styled(Link)`
+	color: #E5E5E5;
+	font-family: 'Lexend Deca';
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	text-decoration: none;
+	font-size: 18px;
+	padding: 0 1rem;
+	cursor: pointer;
+	box-sizing: border-box;
+	&.active {
+		color: #20DF7F;
+		
+	}
+	&:hover{
+		color:#20DF7F;
+		
 	}
 `;
 

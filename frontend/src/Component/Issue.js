@@ -9,7 +9,6 @@ export default function Issue(props){
     const dDate = dueDate.split('T')[0]
     const[returnCheck,setRtnChk] = useState(returned)
     async  function issueBk(){
-    
         const resp  = await fetch(`http://localhost:8989/issue/retBook/${_id}`)
         const data =  await resp.json()
         console.log(data)

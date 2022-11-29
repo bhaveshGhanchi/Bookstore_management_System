@@ -112,9 +112,9 @@ const updateUser = async (req,res,next)=>{
         console.log(error);
     }
     if(!user){
-        return res.status(404).json({message:"Unable to update"})
+        return res.status(404).json({response:false,message:"Unable to update"})
     }
-    return res.status(200).json({message:"User updated"})
+    return res.status(200).json({response:true,message:"User updated"})
 }
 
 

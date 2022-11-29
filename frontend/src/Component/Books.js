@@ -11,17 +11,15 @@ const Books = () => {
     const navigate = useNavigate();
     const [bookData,setBookData] = useState([])
     const [userId,SetUserId] =  useState(null)
-
+    const [userdata,setUserdata] = useState({})
     const [query, setQuery] = useState(" ")
 
     async function getBooks(){
-        
-    
+
         const resp  = await fetch(`http://localhost:8989/book/${query}`)
         const data =  await resp.json()
         setBookData(data.books)
-        // const d = data.books;
-        // d.map(b=> console.log(b))
+        
     }
     useEffect(()=>{
         const token = localStorage.getItem('token')
@@ -33,7 +31,8 @@ const Books = () => {
             }
             else{
                 console.log(user.user._id);
-                SetUserId(user.user._id)
+                SetUserId(user.user._id);
+                setUserdata(user.user)
             }
             
         }else{
@@ -52,7 +51,7 @@ const Books = () => {
         let i =0
         const bookEle = bookData.map(book=>{
             i+=1
-             return <Bk data = {book} key ={i} userid ={userId} />
+             return <Bk data = {book} key ={i} userid ={userId} admin={userdata.admin} />
             
             })
     

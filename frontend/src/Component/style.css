@@ -1,5 +1,21 @@
 /* @import url("https://fonts.googleapis.com"); */
 
+.homeHead{
+    background-image: url('./bookLight.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #E5E5E5;
+    padding: 20px 0px;
+    
+}
+.homeHead>p{
+    background-color: #224957;
+    color: #E5E5E5;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    
+}
 
 .form{
     background-color: white;
@@ -29,6 +45,17 @@
     background-color: #20DF7F;
     border-radius: 10px;
 }
+.userFormbody{
+    margin: 40px 0px;
+    width: 400px;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #20DF7F;
+    border-radius: 10px;
+}
+
 .form2{
     background-color: white;
     font-size: 1.5rem;
@@ -58,7 +85,7 @@
     color: #224957;
 }
 .AddBkformhead{
-    width: 250px;
+    width: 275px;
     /* height: 80px; */
     font-family: 'Lexend Deca';
     font-style: normal;
@@ -79,11 +106,97 @@
     text-align: center;
     font-family: 'Patrick Hand', cursive;
 }
+.boxWrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 
+}
+.boxLink{
+    box-sizing: content-box;
+    margin: 30px;
+  width: 300px;
+  height: 200px; 
+}
+
+.link1{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    
+    background-position: center ;
+    background-size: cover; 
+    /* z-index: 1; */
+    transition-duration: 500ms;
+    transition-property: all;
+    /* box-sizing: border-box;
+    text-align: left;
+    overflow: hidden; */
+    
+}
+.lk1{
+    background-image: url('./boxLink1.jpg');
+}
+.lk2{
+    background-image: url('./link2.jpg');
+}
+.lk3{
+    background-image: url('./link3.jpg');
+}
+.lk4{
+    background-image: url('./link4.jpg');
+}
+.link1::before {
+  content: "";
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(52, 73, 94, 0.75);
+}
+.boxLink:hover{
+    cursor: pointer;
+}
+.boxLink:hover .link1,
+.boxLink:focus .link1{
+    transform: scale(1.1);
+}
+.boxLink:hover .link1:before,
+.boxLink:focus .link1:before{
+    display: block;
+}
+
+.box_content{
+    padding: 10px 40px;
+    width: 100%;
+    /* position: relative; */
+    
+}
+.link1>h2{
+    padding: 0px 20px;
+  position: absolute;
+    font-size: 50px;
+    color: #ffffff;
+    /* background-color: ; */
+}
+.boxLink:hover .link1>h2,
+.boxLink:focus .link1>h2 {
+  display: block;
+}
 
 .form-body{
     text-align: center;
     padding: 20px 10px;
+}
+.form-body-user{
+    text-align: center;
+    padding: 20px 10px;
+}
+.form-body-user > *{
+    padding: 5px;
 }
 
 label{
@@ -260,11 +373,11 @@ body {
     width: 70%;
     
 }
-.contact-data>h2{
+.contact-data>h2,h4{
     color: #20DF7F;
-    font-weight: 400;
+    font-weight: 300;
 }
-.contact-data>h3{
+.contact-data>h3,h5{
     color: #6b976b;
 }
 .contact-card {
@@ -318,7 +431,7 @@ body {
     flex-direction: row;
     padding: 13px;
     padding-bottom: 20px;
-    background-color: white;
+    background-color: #224957;
 }
 .contact-card > img {
     width: 100%;
@@ -329,6 +442,7 @@ body {
     border: 2px solid #20DF7F;
 }
 .issBut{
+    margin: 5px 0px;
     width: 200px;
     height: 45px;
     background-color: #20DF7F;
@@ -339,12 +453,23 @@ body {
     transition: ease-in 0.2s;
     
 }
-.issBut:active{
+.DelBut{
+    width: 200px;
+    height: 45px;
+    background-color: #df2620;
+    border: none;
+    color: #E5E5E5;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px rgb(0 0 0 / 50%);
+    transition: ease-in 0.2s;
+    margin: 5px 0px;
+}
+.issBut:active,.DelBut:active{
     background-color: #6b976b;
     box-shadow:none
     
 }
-.issBut:hover{
+.issBut:hover,.DelBut:hover{
     transform: scale(1.05);
 }
 .issBut:disabled{
@@ -392,11 +517,12 @@ body {
     
 }
 .contact-card-second > img {
-    width: 10%;
+    width: 15%;
     /* height: 250px; */
     align-self: center;
     border-radius: 5px;
     object-fit: cover;
+    border: 2px solid #20DF7F;
 }
 
 .col-12-book{
@@ -501,3 +627,20 @@ body {
     box-shadow: none;
 }
 
+.userBut{
+    background-color: #224957; /* Green */
+    border: none;
+    border-radius: 10px;
+    color: #E5E5E5;
+    width: 50px;
+    height: 30px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.userBut:hover{
+    background-color: #E5E5E5;
+    color: #224957;
+}
+.butCont{
+    display: flex;
+    justify-content: space-evenly;
+}

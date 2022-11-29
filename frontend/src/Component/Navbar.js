@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Nav, NavLink, NavMenu,NavBtnLink, NavBtn,UserData } from "./NavbarElements";
+import { Nav, NavLink, NavMenu,NavBtnLink, NavBtn,UserData,NavLink1 } from "./NavbarElements";
 import jwt from 'jsonwebtoken';
 import Context from "../store/Context";
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ const Navbar = () => {
 				if(userdata.user.admin==true){
 					setAdmin(true)
 				}
-				// console.log(userdata.user.admin);
+				console.log(userdata.user.admin);
 			}
 			
 		}
@@ -52,11 +52,11 @@ return (
 	{state.name &&
 	<Nav>
 		<NavMenu>
-			<NavLink className="logo" to="/" >Book Store</NavLink>
+			<NavLink1 className="logo" to="/" >Book Store</NavLink1>
 			<NavLink to="/Books" >Books</NavLink>
-			<NavLink to="/UserDetails" >User Details</NavLink>
+			
 			{admin?<>
-				<NavLink to="/Profile" >Profile</NavLink>
+				<NavLink to="/Profile" >Issue Log</NavLink>
 				<NavLink to="/Addbook" >Add Book</NavLink>
 			</>:
 			<>
@@ -67,7 +67,7 @@ return (
 		<NavBtn>
 			{state.name?
 					<>
-					<UserData>{state.name}</UserData>
+					<NavLink to="/UserDetails" >{state.name}</NavLink>
 					<button
 					className="logBut"
 					onClick={logOut}>

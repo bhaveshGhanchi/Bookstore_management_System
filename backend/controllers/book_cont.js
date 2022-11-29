@@ -114,9 +114,9 @@ const removeBook = async (req,res,next)=>{
         console.log(error);
     }
     if(!books){
-        return res.status(404).json({message:"Unable to delete"})
+        return res.status(404).json({response:false,message:"Unable to delete"})
     }
-    return res.status(200).json({message:"Book deleted"})
+    return res.status(200).json({response:true,message:"Book deleted"})
 }
 module.exports = {getAllBooks,
                     addBook,

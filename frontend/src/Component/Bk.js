@@ -2,11 +2,13 @@ import React,{useState} from "react";
 
 export default function Bk(props) {
     const {userid}= props
-    const {_id, image, name, author, price, quantity,available} = props.data;
+    const {admin} = props
+    const {_id, image, name, author, category, quantity,available} = props.data;
     const [qunatData, setQuan] =  useState({
         quan: quantity,
         aval: available
     })
+    // console.log(`Admin: ${admin}`);
     async  function issueBk(){
         
         const response= await fetch('http://localhost:8989/issue/isuueBook',{
@@ -33,6 +35,7 @@ export default function Bk(props) {
             })
         }
     }
+    
     return (
         <>
             <div className="contact-card">
@@ -42,7 +45,7 @@ export default function Bk(props) {
                     <p>Author: {author}</p>
                 </div>
                 <div className="info-group">
-                    <p>Category: {price}</p>
+                    <p>Category: {category}</p>
                 </div>
                 <div className="info-group">
                     <p>Copies {qunatData.quan}</p>
@@ -50,7 +53,10 @@ export default function Bk(props) {
                 <button className="issBut"
                     disabled={!qunatData.aval} 
                     onClick={issueBk} 
-                >{qunatData.aval?<>Issue book</>:<>Out of Stock</>}</button>
+                >
+                    {qunatData.aval?<>Issue book</>:<>Out of Stock</>}
+                </button>
+                
             </div>
         </>
         
