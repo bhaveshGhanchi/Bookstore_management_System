@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './style.css'
 // import axios from 'axios';
-import Alert from 'react-bootstrap/Alert';
+
 
 import { useNavigate } from 'react-router-dom';
 
@@ -61,9 +61,7 @@ function LoginForm() {
         if(data.tokenid){
             localStorage.clear()
             localStorage.setItem('token',data.tokenid);
-            <Alert key={'primary'} variant={'primary'}>
-                This is a {'primary'} alert—check it out!
-            </Alert>
+           
             console.log(data);
             navigate('/')
         }

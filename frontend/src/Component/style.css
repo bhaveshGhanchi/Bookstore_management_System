@@ -19,6 +19,16 @@
     background-color: #E5E5E5;
     border-radius: 10px;
 }
+.BookFormbody{
+    margin: 40px 0px;
+    width: 400px;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #20DF7F;
+    border-radius: 10px;
+}
 .form2{
     background-color: white;
     font-size: 1.5rem;
@@ -39,6 +49,17 @@
 .formhead{
     width: 212px;
     height: 80px;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 80px;
+    text-align: center;
+    color: #224957;
+}
+.AddBkformhead{
+    width: 250px;
+    /* height: 80px; */
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
@@ -81,6 +102,7 @@ label{
 }
 
 .form__input{
+    appearance: none;
     padding: 0px 25px;
     /* position: absolute; */
     background-color: #224957;
@@ -88,10 +110,14 @@ label{
     height: 45px;
     border-radius: 10px;
     outline: none;
-    border: 2px solid white;
+    border: 2px solid #E5E5E5;
     color: #FFFFFF;
     font-size: 15px;
     transition: transform 0.4s;
+}
+.form__input::-webkit-inner-spin-button,
+.form__input::-webkit-outer-spin-button{
+    appearance: none;
 }
 ::placeholder{
     color: #FFFFFF;
@@ -108,9 +134,26 @@ label{
     color: #224957;
     border-radius: 10px;
 }
+.form_but2{
+    width: 300px;
+    height: 45px;
+    background-color: #224957;
+    border: none;
+    color: #E5E5E5;
+    border-radius: 10px;
+    border: 2px solid #E5E5E5;
+}
 .form_but:active{
     transform: scale(0.95);
 }
+.form_but2:active{
+    transform: scale(0.95);
+}
+.form_but2:hover{
+    transition: transform 0.4s;
+    transform: scale(1.05);
+}
+
 
 .below_form{
     color: #224957;
@@ -120,8 +163,7 @@ label{
     font-size: 16px;
     line-height: 20px;
 /* identical to box height */
-
-text-align: center;
+    text-align: center;
 }
 .d{
     margin: 0 auto;
