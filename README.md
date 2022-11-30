@@ -11,8 +11,6 @@ The admin will be able to track every order made by each and every user and will
 Once the user has returned the book the admin will go to the issue log and set the status of the book as returned, which will in turn put the book back in stock.
 
 
-![image](https://user-images.githubusercontent.com/118553953/204716068-8b3ee4a3-e508-49ee-a1e4-727fbaca94e2.png)
-
 
 Sign up Page
 ![image](https://user-images.githubusercontent.com/118553953/204714470-354038f9-55bf-4c31-9685-abbc829fb8bc.png)
