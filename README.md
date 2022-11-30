@@ -1,11 +1,16 @@
 # Bookstore_management_System
 A web app for the management of books, users and the Issue and Return of Books in a library.
 Our website provides the user an easy way to borrow books from a library as it will give the user detailed information about all the books that are currently available in the library.
-The user can issue the book online and just needs to go pick the book up from the library. This is very helpful to the users as they do not need to go to the library to search for books as he/she will be able to view all the books present in the library, whether the book is in stock or out of stock. The site will even show the deadline within which the user needs to return the book back to the library. 
+The user can issue the book online and just needs to go pick the book up from the library.
+This is very helpful to the users as they do not need to go to the library to search for books 
+as he/she will be able to view all the books present in the library, whether the book is in stock or out of stock. 
+The site will even show the deadline within which the user needs to return the book back to the library. 
 The website will also keep a track of the history of books that were issued by the user.
 On the admin side, the admin will be able to add new books into the website if any new books have been added to the actual library.
 The admin will be able to track every order made by each and every user and will be able to contact the user if he/she has not returned the book pass the deadline.
 Once the user has returned the book the admin will go to the issue log and set the status of the book as returned, which will in turn put the book back in stock.
+
+
 ![image](https://user-images.githubusercontent.com/118553953/204716068-8b3ee4a3-e508-49ee-a1e4-727fbaca94e2.png)
 
 
